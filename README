@@ -1,0 +1,29 @@
+•	TÍTULO
+
+Aplicación Cliente-Servidor con Operaciones Matemáticas
+
+•	SITUACIÓN
+
+Desarrolla una aplicación Cliente-Servidor en Java que permita intercambiar información y realizar operaciones matemáticas básicas. El Cliente enviará dos números y una operación al Servidor, quien ejecutará la operación y devolverá el resultado al Cliente.
+
+•	INSTRUCCIONES
+
+o	Clase Cliente:
+
+Deberá solicitar al usuario que ingrese dos números reales y la operación a realizar (+, -, *, /).
+Utilizará sockets para enviar estos datos al Servidor.
+Recibirá la respuesta del Servidor e imprimirá el resultado.
+
+o	Clase Servidor:
+
+Estará a la espera de conexiones de Clientes en un puerto específico.
+Recibirá los dos números y la operación desde el Cliente.
+Ejecutará la operación matemática correspondiente.
+Enviará el resultado de vuelta al Cliente.
+
+o	Operaciones Permitidas:
+
+Suma
+Resta
+Multiplicación
+División
