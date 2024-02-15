@@ -25,6 +25,7 @@ public class Servidor {
 			//creo los sockets y lo pongo en escucha
 			socketServidor = new ServerSocket(PUERTO);
 			socketCliente = new Socket();
+			System.out.println("Servidor en escucha");
 			
 			//Cuando llega una petición la acepta. Pongo mensaje para comprobarlo.
 			socketCliente = socketServidor.accept();
@@ -52,7 +53,7 @@ public class Servidor {
             
             //Cierro la conexión
 			System.out.println("Fin de la conexión.");
-			socketServidor.close();
+			socketCliente.close();
             
 		} catch (IOException e) {
 			e.printStackTrace();

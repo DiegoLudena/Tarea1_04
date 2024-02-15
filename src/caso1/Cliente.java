@@ -27,9 +27,7 @@ public class Cliente {
 			//Hago que el usuario introduzca los números y la opción que quiere
 			 int num1 = obtenerNumero("Introduce el primer número:");
 	         int num2 = obtenerNumero("Introduce el segundo número:");
-			
-			System.out.println("Indica la operación a realizar: \n Suma\n Resta \n Multiplicacion  \n División");
-			String opcion = scanner.nextLine().toLowerCase();
+			String opcion = obtenerOpcion("Indica la operación a realizar: \n Suma\n Resta \n Multiplicacion  \n División");
 			
 			//envío al servidor 
 			//Flujo de datos hacia el servidor
@@ -37,7 +35,6 @@ public class Cliente {
 			
 			flujoServidor.writeInt(num1);
 			flujoServidor.writeInt(num2);
-			
 			flujoServidor.writeUTF(opcion);
 			
 
@@ -49,7 +46,9 @@ public class Cliente {
 			//Imprimo el resultado
 			System.out.println("El resultado de la " + opcion +" es: " + resultado);
 			
-			//Cierro los flujos
+			//Ciero el Scanner
+			scanner.close();
+			//Cierro los flujos			
 			flujoServidor.close();
 			flujoCliente.close();
 			//Cierro el socket
@@ -72,8 +71,22 @@ public class Cliente {
 //Ya que hago varias veces el obtener un número, lo hago como un método
     private int obtenerNumero(String mensaje) {
         System.out.println(mensaje);
-        return scanner.nextInt();
+        int numero = scanner.nextInt();
+        /* ESTE era el fallo. Cuando utilizas nextInt() para leer un número, el carácter de nueva línea (Enter o \n) aún queda en el búfer. 
+         * Entonces al cambiar al nextLine lee primero ese salto y no recibe la opcion del usuario
+         * Así que hay que limpiar el buffer antes de llamar a obtenerOpcion usando un método de Scanner que sí consuma todo el buffer, como nextLine.
+        */
+        scanner.nextLine();
+        return numero;
     }
+   //He hecho obtener opcion también un método porque pensaba que podía ser lo que cortaba la conexión, pero no.
+    private String obtenerOpcion(String mensaje) {
+        System.out.println(mensaje);
+        String opcion = scanner.nextLine().toLowerCase();
+        return opcion;
+        
+    }
+   
 }
 
 
