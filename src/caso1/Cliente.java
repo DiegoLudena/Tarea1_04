@@ -25,16 +25,16 @@ public class Cliente {
 			socketCliente = new Socket(HOST,PUERTO);
 			
 			//Hago que el usuario introduzca los números y la opción que quiere
-			 int num1 = obtenerNumero("Introduce el primer número:");
-	         int num2 = obtenerNumero("Introduce el segundo número:");
+			 double num1 = obtenerNumero("Introduce el primer número:");
+	         double num2 = obtenerNumero("Introduce el segundo número:");
 			String opcion = obtenerOpcion("Indica la operación a realizar: \n Suma\n Resta \n Multiplicacion  \n División");
 			
 			//envío al servidor 
 			//Flujo de datos hacia el servidor
 			flujoServidor = new DataOutputStream(socketCliente.getOutputStream());
 			
-			flujoServidor.writeInt(num1);
-			flujoServidor.writeInt(num2);
+			flujoServidor.writeDouble(num1);
+			flujoServidor.writeDouble(num2);
 			flujoServidor.writeUTF(opcion);
 			
 

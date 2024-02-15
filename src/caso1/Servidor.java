@@ -34,8 +34,8 @@ public class Servidor {
 			//abro el flujo desde el cliente
 			flujoServidor = new DataInputStream(socketCliente.getInputStream());
             // Leo los números y la opción enviados por el cliente
-            int num1 = flujoServidor.readInt();
-            int num2 = flujoServidor.readInt();
+            double num1 = flujoServidor.readDouble();
+            double num2 = flujoServidor.readDouble();
             String opcion = flujoServidor.readUTF();
 			
             //Hago el cálculo con los datos del usuario
@@ -63,7 +63,7 @@ public class Servidor {
 	}
 	
 	//Creo la calculadora. Inicialmente quería devolver un Int, pero no se devolver una cadena de error en el default, así que lo he convertido a String
-	public String calculadora(int num1, int num2, String opcion) { 
+	public String calculadora(double num1, double num2, String opcion) { 
 	    switch(opcion) {
 	        case "suma":
 	            return String.valueOf(num1 + num2);
